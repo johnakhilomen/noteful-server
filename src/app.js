@@ -10,8 +10,8 @@ const fRouter = require('./folders/folders-router.js');
 const app = express()
 
 const morganOption = (NODE_ENV === 'production')
-  ? 'tiny'
-  : 'common';
+    ? 'tiny'
+    : 'common';
 
 app.use(morgan(morganOption))
 app.use(helmet())
@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
     res.send('Hello, noteful users!')
 })
 
+app.get('/', (req, res) => {
+    res.send('Hello from Cristina Picazo!')
+})
+
 app.use(function errorHandler(error, req, res, next) {
     let response
     if (NODE_ENV === 'production') {
@@ -33,6 +37,6 @@ app.use(function errorHandler(error, req, res, next) {
         response = { message: error.message, error }
     }
     res.status(500).json(response)
-    })
-    
+})
+
 module.exports = app
